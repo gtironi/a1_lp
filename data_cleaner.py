@@ -30,13 +30,12 @@ def csv_to_dataframe(csv_path, separator=";", encoding_parameter = 'cp860'):
             Um dataframe com os dados do arquivo .csv
             
         >>> csv_to_dataframe('test.csv')
-                 Coluna2  Coluna3
-        Coluna1                  
-        10           0.0      Ola
-        8            NaN  TudoBem
+        Coluna1  Coluna2  Coluna3
+        0       10      0.0      Ola
+        1        8      NaN  TudoBem
         '''
     try:
-        dataframe = pd.read_csv(csv_path, sep=separator, index_col=0, encoding = encoding_parameter)
+        dataframe = pd.read_csv(csv_path, sep=separator, encoding = encoding_parameter)
         return dataframe
     except ValueError:
         print(f'O valor passado ({csv_path}) não é uma string, por favor, passe o caminho para o seu csv como uma string')
