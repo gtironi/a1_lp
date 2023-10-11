@@ -30,9 +30,11 @@ def csv_to_dataframe(csv_path, separator=";", encoding_parameter = 'cp860'):
             Um dataframe com os dados do arquivo .csv
             
         >>> csv_to_dataframe('test.csv')
-        Coluna1  Coluna2  Coluna3
-        0       10      0.0      Ola
-        1        8      NaN  TudoBem
+           Coluna1  Coluna2 Coluna3
+        0       10      0.0     Ola
+        1        8      NaN     Ola
+        2       10     10.0     NaN
+        3        2      4.0    Tudo
         '''
     try:
         dataframe = pd.read_csv(csv_path, sep=separator, encoding = encoding_parameter)
