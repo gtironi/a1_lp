@@ -89,6 +89,6 @@ def remove_colunas_irrelevantes(dataframe, num_NaN_values):
     except (TypeError, ValueError):
         print(f"O valor passado para num_NaN_values ({num_NaN_values}), deve ser um inteiro")
 
-#if __name__ == "__main__":
-#    import doctest
-#    doctest.testmod()
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
