@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import data_cleaner as dc
 
 def measure_tendency(dataframe, column):
     '''Realiza as Medidas de Tendência Central de uma coluna especificada.
@@ -39,24 +40,22 @@ def measure_tendency(dataframe, column):
     O argumeto passado não é do tipo pd.DataFrame
     '''
     try:
-        media = dataframe[column].mean()
-        mediana = dataframe[column].median()
-        moda = dataframe[column].mode().values[0]
-        tendency_metrics = (media, mediana, moda)
-    except TypeError:
-        if isinstance(dataframe, pd.DataFrame):
-            if isinstance(dataframe[column], object) or isinstance(dataframe[column], str):
-                tendency_metrics = dataframe[column].mode().values[0]
-        elif not isinstance(dataframe, pd.DataFrame):
-            print(f'O argumeto passado não é do tipo pd.DataFrame')
+        media = dataframe[column].mean().round(3) #calcula a média, arredonda com 3 casas
+        mediana = dataframe[column].median() #calcula a mediana
+        moda = dataframe[column].mode().values[0] #calcula a moda e transforma o dataframe resultante em um valor
+        tendency_metrics = (media, mediana, moda) #junta as medidas em uma tupla
+        return tendency_metrics
+    
+    except TypeError: 
+        if isinstance(dataframe, pd.DataFrame): #verifica se o argumento dataframe é do tipo dataframe
+            if isinstance(dataframe[column], object) or isinstance(dataframe[column], str): #verifica se o dado é categorico
+                tendency_metrics = dataframe[column].mode().values[0] #calcula a moda e transforma o dataframe resultante em um valor
+                return tendency_metrics     
+        else: #verifica se o argumento dataframe não é do tipo dataframe
+            print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
+            
     except KeyError:
-        print(f'A coluna {column} não existe')
-    finally:
-        try:    
-            return tendency_metrics
-        except:
-            pass
-
+        print(f'A coluna {column} não existe') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
 
 def measure_dispersion(dataframe, column):
     '''Realiza as Medidas de Dispersão de uma coluna especificada. 
@@ -96,34 +95,24 @@ def measure_dispersion(dataframe, column):
     O argumeto passado não é do tipo pd.DataFrame
     '''
     try:
-        desvio_padrao = dataframe[column].std().round(3)
-        variancia = dataframe[column].var().round(3)
-        maximo = dataframe[column].max()
-        minimo = dataframe[column].min()
-        amplitude = dataframe[column].max() - dataframe[column].min()
-        dispersion_metrics = (desvio_padrao, variancia, maximo, minimo, amplitude)
-        
+        desvio_padrao = dataframe[column].std().round(3) #calcula o desvio padrao, arredonda com 3 casas
+        variancia = dataframe[column].var().round(3) #calcula a variancia, arredonda com 3 casas
+        maximo = dataframe[column].max() #calcula o valor maximo
+        minimo = dataframe[column].min() #calcula o valor minimo
+        amplitude = dataframe[column].max() - dataframe[column].min() #calcula a amplitude
+        dispersion_metrics = (desvio_padrao, variancia, maximo, minimo, amplitude) #junta as medidas em uma tupla
         return dispersion_metrics
+    
     except TypeError:
-        if isinstance(dataframe, pd.DataFrame):
-            if isinstance(dataframe[column], object) or isinstance(dataframe[column], str):
-                print(f'A coluna {column} não é um número, portanto, não tem medidas de dispersão')
-                return ()
-        elif not isinstance(dataframe, pd.DataFrame):
-            print(f'O argumeto passado não é do tipo pd.DataFrame')
+        if isinstance(dataframe, pd.DataFrame): #verifica se o argumento dataframe é do tipo dataframe
+            if isinstance(dataframe[column], object) or isinstance(dataframe[column], str): #verifica se o dado é categorico
+                print(f'A coluna {column} não é um número, portanto, não tem medidas de dispersão') 
+                return () #retorna uma lista vazia
+        else: #verifica se o argumento dataframe não é do tipo dataframe
+            print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
+            
     except KeyError:
-        print(f'A coluna {column} não existe')
-
-def frequencia():
-    pass
-
-
-import data_cleaner as dc
-
-data = dc.remove_colunas_irrelevantes(dc.csv_to_dataframe('test.csv'), 3600)
-print(data.head())
-
-print(measure_tendency(data, 'Colunas3'))
+        print(f'A coluna {column} não existe') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
 
 
 if __name__ == "__main__":
