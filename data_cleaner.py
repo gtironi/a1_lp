@@ -40,6 +40,7 @@ def csv_to_dataframe(csv_path, separator=";", encoding_parameter = 'cp860'):
     try:
         dataframe = pd.read_csv(csv_path, sep=separator, encoding = encoding_parameter, low_memory=False) #lẽ o arquivo, usando alguns argumentos pré definidos
         return dataframe #retorna o dataframe lido
+
     except ValueError:
         print(f'O valor passado ({csv_path}) não é uma string, por favor, passe o caminho para o seu csv como uma string') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
     except FileNotFoundError:
