@@ -174,7 +174,7 @@ def corrige_nome_estados(df_censo):
     '''
 
     try:
-        df_censo["NO_UF"] = df_censo["NO_UF"].replace("Rond⌠nia", "Rondônia")
+        df_censo["NO_UF"] = df_censo["NO_UF"].replace("Rond⌠nia", "Rondônia") #substitui o nome errado dos estados pelo certo
         df_censo["NO_UF"] = df_censo["NO_UF"].replace("Parß", "Pará")
         df_censo["NO_UF"] = df_censo["NO_UF"].replace("Amapß", "Amapá")
         df_censo["NO_UF"] = df_censo["NO_UF"].replace("Maranhπo", "Maranhão")
@@ -183,9 +183,9 @@ def corrige_nome_estados(df_censo):
         df_censo["NO_UF"] = df_censo["NO_UF"].replace("Paraφba","Paraíba")
         return df_censo
 
-    except KeyError:
+    except KeyError:     #avisa sobre o erro no argumento da função, não há como tratar de outra forma
         print("O data frame indicado não possui a coluna NO_UF.")
-    except TypeError:
+    except TypeError:    #avisa sobre o erro no argumento da função, não há como tratar de outra forma
         print("O atributo indicado não é um dataframe.")
 
 
