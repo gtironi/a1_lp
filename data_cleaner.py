@@ -50,7 +50,6 @@ def csv_to_dataframe(csv_path, separator=";", encoding_parameter = 'cp860'):
     except LookupError:
         print("O valor do encoding_parameter não é valido") #avisa que o padrão pedido não existe
 
-
 def remove_colunas_irrelevantes(dataframe, num_NaN_values):
     '''Remove as colunas com mais NaN do que o especificado.
 
