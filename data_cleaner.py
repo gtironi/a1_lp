@@ -107,25 +107,29 @@ def replace_88888_values(dataframe):
     ------
         TypeError
             Ignora as variáveis categoricas
+        ValueError
+            Ignora as variáveis categoricas
+        IndexError
+            Ignora colunas com apenas um valor
         
     Returns
     -------
     dataframe
         O dataframe com os valores 88888 trocados
         
-    >>> data = pd.DataFrame({'A':[88888, 4, 6, 9],'B':[3, np.NaN, 8, 88888],'C':['opa', 'ola', np.NaN, 'oi'],'D':[1, 1, np.NaN, np.NaN]})
+    >>> data = pd.DataFrame({'A':[88888, 4, 6, 9],'B':[3, np.NaN, 8, 88888],'C':['opa', 'ola', np.NaN, 'oi'],'D':[1, 1, 1, 1]})
     >>> replace_88888_values(data)
-       A    B    C    D
-    0  9  3.0  opa  1.0
-    1  4  NaN  ola  1.0
-    2  6  8.0  NaN  NaN
-    3  9  8.0   oi  NaN
+       A    B    C  D
+    0  9  3.0  opa  1
+    1  4  NaN  ola  1
+    2  6  8.0  NaN  1
+    3  9  8.0   oi  1
     '''
     for column in dataframe.columns:
         try:
             max = sorted(dataframe[column].unique())[-2]
             dataframe[column].replace(88888, int(max), inplace = True)
-        except TypeError:
+        except (TypeError, IndexError, ValueError):
             pass
     return dataframe
 
