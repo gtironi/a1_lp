@@ -171,6 +171,9 @@ def corrige_nome_estados(df_censo):
     80604          2021  Nordeste          2   Alagoas    AL     27  ...        NaN              NaN            NaN         NaN           NaN            NaN
     <BLANKLINE>
     [80605 rows x 370 columns]
+
+    >>> corrige_nome_estados(2)
+    O atributo indicado não é um dataframe.
     '''
 
     try:
