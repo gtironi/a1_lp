@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import data_analisy as da
 
 def csv_to_dataframe(csv_path, separator=";", encoding_parameter = 'cp860'):
     '''Transforma um arquivo .csv em um dataframe de acordo com alguns parametros.
@@ -94,8 +95,39 @@ def remove_colunas_irrelevantes(dataframe, num_NaN_values):
         print(f"O valor passado para num_NaN_values ({num_NaN_values}), deve ser numerico") #avisa sobre o erro no argumento da função, não há como tratar de outra forma
 
 def replace_88888_values(dataframe):
-    pass
-    
+    '''Substitui os valores 88888 pelo maior valor imediatamente 
+       anterior em todas as colunas possiveis.
+
+    Parameters
+    ----------
+    dataframe: dataframe
+        O dataframe a ser tratado
+
+    Raises
+    ------
+        TypeError
+            Ignora as variáveis categoricas
+        
+    Returns
+    -------
+    dataframe
+        O dataframe com os valores 88888 trocados
+        
+    >>> data = pd.DataFrame({'A':[88888, 4, 6, 9],'B':[3, np.NaN, 8, 88888],'C':['opa', 'ola', np.NaN, 'oi'],'D':[1, 1, np.NaN, np.NaN]})
+    >>> replace_88888_values(data)
+       A    B    C    D
+    0  9  3.0  opa  1.0
+    1  4  NaN  ola  1.0
+    2  6  8.0  NaN  NaN
+    3  9  8.0   oi  NaN
+    '''
+    for column in dataframe.columns:
+        try:
+            max = sorted(dataframe[column].unique())[-2]
+            dataframe[column].replace(88888, int(max), inplace = True)
+        except TypeError:
+            pass
+    return dataframe
 
 if __name__ == "__main__":
     import doctest
