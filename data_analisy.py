@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-import data_cleaner as dc
 
 def measure_tendency(dataframe, column):
     '''Realiza as Medidas de Tendência Central de uma coluna especificada.
@@ -113,7 +112,6 @@ def measure_dispersion(dataframe, column):
             
     except KeyError:
         print(f'A coluna {column} não existe') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
-
 
 if __name__ == "__main__":
     import doctest
