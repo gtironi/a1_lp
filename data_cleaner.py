@@ -37,7 +37,7 @@ def csv_to_dataframe(csv_path, separator=";", encoding_parameter = 'cp860'):
         3        2      4.0    Tudo
         '''
     try:
-        dataframe = pd.read_csv(csv_path, sep=separator, encoding = encoding_parameter)
+        dataframe = pd.read_csv(csv_path, sep=separator, encoding = encoding_parameter, low_memory=False)
         return dataframe
     except ValueError:
         print(f'O valor passado ({csv_path}) não é uma string, por favor, passe o caminho para o seu csv como uma string')
