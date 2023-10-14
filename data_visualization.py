@@ -49,6 +49,8 @@ def visualizacao_marciano(dataframe):
     ------
     TypeError
         O parametro dataframe não é um dataframe
+    AttributeError
+        O parametro dataframe não é um dataframe
         
     Returns
     -------
