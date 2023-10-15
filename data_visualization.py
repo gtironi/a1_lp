@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import os
 
-
 def visualizacao_gustavo(dataframe):
     '''Plota o gráfico que mostra a quantidade média de TVs por escola, por estado
 
@@ -82,7 +81,7 @@ def visualizacao_marciano(dataframe):
 def visualizacao_tambosi(df):
     """
     Plota um histograma com a distribuição de datas de inicio de aulas por estado.
-    
+
     Parameters
     ----------
     dataframe: dataframe
@@ -124,7 +123,6 @@ def visualizacao_tambosi(df):
         print('No seu DataFrame, não existe uma coluna NO_REGIAO')
         return
     
-    
     # 2. REALIZAR A ANALISE PARA CADA REGIAO
     for region, data in datas_estado :   
 
@@ -153,8 +151,7 @@ def visualizacao_tambosi(df):
         plt.title(f'Distribuição de Data de Inicio das Aulas - {region}')
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig(os.path.join("Imagens", f"(Tambosi) Distribuicao Inicio Aulas - {region}"))
-        plt.close()
+        plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
 
 def visualizacao_vilas(dataframe):
     '''
@@ -183,7 +180,7 @@ def visualizacao_vilas(dataframe):
     >>> visualizacao_vilas('Erro')
     O argumento passado não é do tipo pd.DataFrame
     '''
-
+plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
     try:
         if not isinstance(dataframe, pd.DataFrame):
             raise TypeError('O argumento passado não é do tipo pd.DataFrame')
