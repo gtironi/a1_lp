@@ -107,7 +107,7 @@ def visualizacao_tambosi(df):
     >>> visualizacao_tambosi(c)
     No seu DataFrame, não existe uma coluna NO_REGIAO
     """
-    
+
     try:
         # 1. AGRUPAR POR REGIÃO
         datas_estado = df.groupby("NO_REGIAO")
