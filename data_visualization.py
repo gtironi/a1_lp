@@ -73,6 +73,7 @@ def visualizacao_marciano(dataframe):
         plt.ylabel('Número de Escolas') # define label do eixo y
         plt.title('Quantidade de escolas sem acesso à Internet por Estado') #define título
         plt.xticks(rotation=45) # roda o nome dos estados em 45 graus
+        plt.tight_layout()
         plt.savefig(os.path.join("Imagens", "visualizacao_marciano.png"))
         plt.close() # salva o plot em um arquivo
     except (TypeError, AttributeError):
