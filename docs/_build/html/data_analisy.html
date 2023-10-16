@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parameters &mdash; a1_lp 1.0 documentation</title>
+  <title>Funções de Analise &mdash; a1_lp 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Parameters" href="data_cleaner.html" /> 
+    <link rel="next" title="Visualização" href="data_visualization.html" />
+    <link rel="prev" title="Funções de Tratamento" href="data_cleaner.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -43,12 +44,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="data_cleaner.html"><code class="docutils literal notranslate"><span class="pre">corrige_nome_estados()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_cleaner.html#data_cleaner.csv_to_dataframe"><code class="docutils literal notranslate"><span class="pre">csv_to_dataframe()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_cleaner.html#data_cleaner.remove_colunas_irrelevantes"><code class="docutils literal notranslate"><span class="pre">remove_colunas_irrelevantes()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_cleaner.html#data_cleaner.replace_88888_values"><code class="docutils literal notranslate"><span class="pre">replace_88888_values()</span></code></a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">measure_dispersion()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#data_analisy.measure_tendency"><code class="docutils literal notranslate"><span class="pre">measure_tendency()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_cleaner.html">Funções de Tratamento</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Funções de Analise</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data_analisy.measure_dispersion"><code class="docutils literal notranslate"><span class="pre">measure_dispersion()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data_analisy.measure_tendency"><code class="docutils literal notranslate"><span class="pre">measure_tendency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_visualization.html">Visualização</a></li>
 </ul>
 
         </div>
@@ -65,7 +67,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Parameters</li>
+      <li class="breadcrumb-item active">Funções de Analise</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/data_analisy.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,7 +77,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <blockquote>
+  <section id="funcoes-de-analise">
+<h1>Funções de Analise<a class="headerlink" href="#funcoes-de-analise" title="Link to this heading"></a></h1>
+<blockquote>
 <div><dl class="py function" id="module-data_analisy">
 <dt class="sig sig-object py" id="data_analisy.measure_dispersion">
 <span class="sig-prename descclassname"><span class="pre">data_analisy.</span></span><span class="sig-name descname"><span class="pre">measure_dispersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_analisy.measure_dispersion" title="Link to this definition"></a></dt>
@@ -84,7 +88,7 @@
 </dd>
 </dl>
 <section id="parameters">
-<h1>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h1>
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe: dataframe</dt><dd><p>O dataframe a ser analisado</p>
 </dd>
@@ -93,7 +97,7 @@
 </dl>
 </section>
 <section id="raises">
-<h1>Raises<a class="headerlink" href="#raises" title="Link to this heading"></a></h1>
+<h2>Raises<a class="headerlink" href="#raises" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>TypeError</dt><dd><p>O parametro dataframe não é um dataframe ou a coluna é categórica</p>
 </dd>
@@ -102,7 +106,7 @@
 </dl>
 </section>
 <section id="returns">
-<h1>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h1>
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dispersion_metrics</dt><dd><p>Uma tupla contendo cada medidas de dispersão, da forma (desvio padrâo, variância, máximo, mínimo, amplitude)</p>
 </dd>
@@ -134,7 +138,7 @@
 <span class="sig-prename descclassname"><span class="pre">data_analisy.</span></span><span class="sig-name descname"><span class="pre">measure_tendency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_analisy.measure_tendency" title="Link to this definition"></a></dt>
 <dd><p>Realiza as Medidas de Tendência Central de uma coluna especificada.</p>
 <section id="id1">
-<h1>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe: dataframe</dt><dd><p>O dataframe a ser analisado</p>
 </dd>
@@ -143,7 +147,7 @@
 </dl>
 </section>
 <section id="id2">
-<h1>Raises<a class="headerlink" href="#id2" title="Link to this heading"></a></h1>
+<h2>Raises<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>TypeError</dt><dd><p>O parametro dataframe não é um dataframe ou a coluna é categórica</p>
 </dd>
@@ -152,7 +156,7 @@
 </dl>
 </section>
 <section id="id3">
-<h1>Returns<a class="headerlink" href="#id3" title="Link to this heading"></a></h1>
+<h2>Returns<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>tendency_metrics</dt><dd><p>Uma tupla contendo cada medidas de tendência central.
 Se a variável for numerica, será da forma (média, mediana, moda)
@@ -181,12 +185,14 @@ Se a variável for categorica, será apeans a moda</p>
 </dd></dl>
 
 </div></blockquote>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="data_cleaner.html" class="btn btn-neutral float-left" title="Parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_cleaner.html" class="btn btn-neutral float-left" title="Funções de Tratamento" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_visualization.html" class="btn btn-neutral float-right" title="Visualização" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

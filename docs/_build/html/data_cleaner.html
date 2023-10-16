@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Parameters &mdash; a1_lp 1.0 documentation</title>
+  <title>Funções de Tratamento &mdash; a1_lp 1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -19,7 +19,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Parameters" href="data_analisy.html" />
+    <link rel="next" title="Funções de Analise" href="data_analisy.html" />
     <link rel="prev" title="Welcome to a1_lp’s documentation!" href="index.html" /> 
 </head>
 
@@ -44,12 +44,15 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">corrige_nome_estados()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#data_cleaner.csv_to_dataframe"><code class="docutils literal notranslate"><span class="pre">csv_to_dataframe()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#data_cleaner.remove_colunas_irrelevantes"><code class="docutils literal notranslate"><span class="pre">remove_colunas_irrelevantes()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="#data_cleaner.replace_88888_values"><code class="docutils literal notranslate"><span class="pre">replace_88888_values()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_analisy.html"><code class="docutils literal notranslate"><span class="pre">measure_dispersion()</span></code></a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_analisy.html#data_analisy.measure_tendency"><code class="docutils literal notranslate"><span class="pre">measure_tendency()</span></code></a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Funções de Tratamento</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#data_cleaner.corrige_nome_estados"><code class="docutils literal notranslate"><span class="pre">corrige_nome_estados()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data_cleaner.csv_to_dataframe"><code class="docutils literal notranslate"><span class="pre">csv_to_dataframe()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data_cleaner.remove_colunas_irrelevantes"><code class="docutils literal notranslate"><span class="pre">remove_colunas_irrelevantes()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data_cleaner.replace_88888_values"><code class="docutils literal notranslate"><span class="pre">replace_88888_values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_analisy.html">Funções de Analise</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_visualization.html">Visualização</a></li>
 </ul>
 
         </div>
@@ -66,7 +69,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Parameters</li>
+      <li class="breadcrumb-item active">Funções de Tratamento</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/data_cleaner.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,20 +79,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <blockquote>
+  <section id="funcoes-de-tratamento">
+<h1>Funções de Tratamento<a class="headerlink" href="#funcoes-de-tratamento" title="Link to this heading"></a></h1>
+<blockquote>
 <div><dl class="py function" id="module-data_cleaner">
 <dt class="sig sig-object py" id="data_cleaner.corrige_nome_estados">
 <span class="sig-prename descclassname"><span class="pre">data_cleaner.</span></span><span class="sig-name descname"><span class="pre">corrige_nome_estados</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df_censo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_cleaner.corrige_nome_estados" title="Link to this definition"></a></dt>
 <dd><p>Corrige o nome dos estados do dataframe censo_escolar_2021</p>
 <section id="parameters">
-<h1>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h1>
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>df_censo: dataframe</dt><dd><p>O dataframe do censo_escolar</p>
 </dd>
 </dl>
 </section>
 <section id="raises">
-<h1>Raises<a class="headerlink" href="#raises" title="Link to this heading"></a></h1>
+<h2>Raises<a class="headerlink" href="#raises" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>KeyError</dt><dd><p>O dataframe indicado não possui a coluna NO_UF</p>
 </dd>
@@ -98,7 +103,7 @@
 </dl>
 </section>
 <section id="returns">
-<h1>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h1>
+<h2>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe</dt><dd><p>O dataframe com os nome dos estados corretos</p>
 </dd>
@@ -133,7 +138,7 @@
 <span class="sig-prename descclassname"><span class="pre">data_cleaner.</span></span><span class="sig-name descname"><span class="pre">csv_to_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">csv_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">separator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">';'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoding_parameter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cp860'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_cleaner.csv_to_dataframe" title="Link to this definition"></a></dt>
 <dd><p>Transforma um arquivo .csv em um dataframe de acordo com alguns parametros.</p>
 <section id="id1">
-<h1>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<h2>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>csv_path<span class="classifier">str</span></dt><dd><p>O caminho para o arquivo a ser lido</p>
 </dd>
@@ -144,7 +149,7 @@
 </dl>
 </section>
 <section id="id2">
-<h1>Raises<a class="headerlink" href="#id2" title="Link to this heading"></a></h1>
+<h2>Raises<a class="headerlink" href="#id2" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>ValueError</dt><dd><p>O argumento csv_path é do tipo errado</p>
 </dd>
@@ -157,7 +162,7 @@
 </dl>
 </section>
 <section id="id3">
-<h1>Returns<a class="headerlink" href="#id3" title="Link to this heading"></a></h1>
+<h2>Returns<a class="headerlink" href="#id3" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe</dt><dd><p>Um dataframe com os dados do arquivo .csv</p>
 </dd>
@@ -178,7 +183,7 @@
 <span class="sig-prename descclassname"><span class="pre">data_cleaner.</span></span><span class="sig-name descname"><span class="pre">remove_colunas_irrelevantes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_NaN_values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_cleaner.remove_colunas_irrelevantes" title="Link to this definition"></a></dt>
 <dd><p>Remove as colunas com mais NaN do que o especificado.</p>
 <section id="id4">
-<h1>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h1>
+<h2>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe: dataframe</dt><dd><p>O dataframe a ser tratado</p>
 </dd>
@@ -187,7 +192,7 @@
 </dl>
 </section>
 <section id="id5">
-<h1>Raises<a class="headerlink" href="#id5" title="Link to this heading"></a></h1>
+<h2>Raises<a class="headerlink" href="#id5" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>AttributeError</dt><dd><p>O argumento dataframe não é um dataframe</p>
 </dd>
@@ -198,7 +203,7 @@
 </dl>
 </section>
 <section id="id6">
-<h1>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h1>
+<h2>Returns<a class="headerlink" href="#id6" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe_sem_colunas_irrelevantes</dt><dd><p>O dataframe sem as colunas com mais NaN do que o especificado</p>
 </dd>
@@ -223,14 +228,14 @@
 </dd>
 </dl>
 <section id="id7">
-<h1>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h1>
+<h2>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe: dataframe</dt><dd><p>O dataframe a ser tratado</p>
 </dd>
 </dl>
 </section>
 <section id="id8">
-<h1>Raises<a class="headerlink" href="#id8" title="Link to this heading"></a></h1>
+<h2>Raises<a class="headerlink" href="#id8" title="Link to this heading"></a></h2>
 <blockquote>
 <div><dl class="simple">
 <dt>TypeError</dt><dd><p>Ignora as variáveis categoricas</p>
@@ -243,7 +248,7 @@
 </div></blockquote>
 </section>
 <section id="id9">
-<h1>Returns<a class="headerlink" href="#id9" title="Link to this heading"></a></h1>
+<h2>Returns<a class="headerlink" href="#id9" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>dataframe</dt><dd><p>O dataframe com os valores 88888 trocados</p>
 </dd>
@@ -261,13 +266,14 @@
 </dd></dl>
 
 </div></blockquote>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to a1_lp’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="data_analisy.html" class="btn btn-neutral float-right" title="Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="data_analisy.html" class="btn btn-neutral float-right" title="Funções de Analise" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
