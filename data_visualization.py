@@ -35,7 +35,7 @@ def visualizacao_gustavo(dataframe):
         plt.title('Quantidade média de TVs por escola, por estado') #coloca titulo no grafico
         plt.xlabel('Estados') #define a label no eixo x
         plt.ylabel('Quantidade média de TVs') #define a label no eixo y
-        plt.savefig(os.path.join("Imagens", "visualizacao_gustavo.png"))
+        plt.savefig(os.path.join("imagens", "visualizacao_gustavo.png"))
         plt.close()
     except (TypeError,AttributeError):
         print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
@@ -74,7 +74,7 @@ def visualizacao_marciano(dataframe):
         plt.title('Quantidade de escolas sem acesso à Internet por Estado') #define título
         plt.xticks(rotation=45) # roda o nome dos estados em 45 graus
         plt.tight_layout()
-        plt.savefig(os.path.join("Imagens", "visualizacao_marciano.png"))
+        plt.savefig(os.path.join("imagens", "visualizacao_marciano.png"))
         plt.close() # salva o plot em um arquivo
     except (TypeError, AttributeError):
         print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
@@ -154,7 +154,8 @@ def visualizacao_tambosi(df):
         plt.title(f'Distribuição de Data de Inicio das Aulas - {region}')
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
+        plt.savefig(os.path.join("imagens", f"visualizacao_tambosi_{region.lower()}.png"), bbox_inches='tight')
+        plt.close()
 
 def visualizacao_vilas(dataframe):
     '''
@@ -181,7 +182,7 @@ def visualizacao_vilas(dataframe):
     Examples
     --------
     >>> visualizacao_vilas('Erro')
-    O argumento passado não é do tipo pd.Dataframe
+    Erro: O argumento passado não é do tipo pd.DataFrame
     '''
 
     try:
@@ -248,7 +249,7 @@ def visualizacao_vilas(dataframe):
 
         # Ajustando o layout para evitar sobreposição
         plt.tight_layout()
-        plt.savefig(os.path.join("Imagens", "visualizacao_vilas_png"), bbox_inches='tight')
+        plt.savefig(os.path.join("imagens", "visualizacao_vilas_png"), bbox_inches='tight')
         plt.close()
 
     except (TypeError, ValueError) as e:

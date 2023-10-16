@@ -3,8 +3,8 @@ import data_cleaner as dc
 import data_visualization as vis
 import os
 
-if not os.path.exists("Imagens"):
-    os.makedirs("Imagens")
+if not os.path.exists("imagens"):
+    os.makedirs("imagens")
 
 
 ## Tratamento dos dados
@@ -25,7 +25,7 @@ vis.visualizacao_gustavo(dataframe) #cria e salva a visualização do gustavo em
 
 vis.visualizacao_marciano(dataframe) #cria e salva a visualização do marciano em um arquivo
 
-#vis.visualizacao_tambosi(dataframe) # Cria e salva a visualização do Tambosi em 2 arquivos chamados f"(Tambosi) Distribuicao Inicio Aulas - {region}"
+vis.visualizacao_tambosi(dataframe) # Cria e salva a visualização do Tambosi em 2 arquivos
 
 vis.visualizacao_vilas(dataframe_without_tratament) # Cria e salva a visualização do Vilas em um arquivo png
 
