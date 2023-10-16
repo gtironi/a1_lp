@@ -25,6 +25,7 @@ def measure_tendency(dataframe, column):
         Se a variável for numerica, será da forma (média, mediana, moda)
         Se a variável for categorica, será apeans a moda
     
+    >>> import data_cleaner as dc
     >>> data = dc.remove_colunas_irrelevantes(dc.csv_to_dataframe('test.csv'), 2)
     >>> measure_tendency(data, 'Coluna1')
     (7.5, 9.0, 10)
@@ -79,6 +80,7 @@ def measure_dispersion(dataframe, column):
     dispersion_metrics
         Uma tupla contendo cada medidas de dispersão, da forma (desvio padrâo, variância, máximo, mínimo, amplitude)
     
+    >>> import data_cleaner as dc
     >>> data = dc.remove_colunas_irrelevantes(dc.csv_to_dataframe('test.csv'), 2)
     >>> measure_dispersion(data, 'Coluna1')
     (3.786, 14.333, 10, 2, 8)

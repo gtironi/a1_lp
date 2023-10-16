@@ -3,6 +3,7 @@ import pandas as pd
 import data_analisy
 import data_cleaner
 
+
 def visualizacao_gustavo(dataframe):
     '''Plota o gráfico que mostra a quantidade média de TVs por escola, por estado
 
@@ -52,6 +53,8 @@ def visualizacao_marciano(dataframe):
     ------
     TypeError
         O parametro dataframe não é um dataframe
+    AttributeError
+        O parametro dataframe não é um dataframe
         
     Returns
     -------
@@ -75,10 +78,80 @@ def visualizacao_marciano(dataframe):
         print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
 
 
+def visualizacao_tambosi(df):
+    """
+    Plota um histograma com a distribuição de datas de inicio de aulas por estado.
+    
+    Parameters
+    ----------
+    dataframe: dataframe
+        O dataframe a ser analisado
+    
+    Raises
+    ------
+    TypeError
+        O parametro dataframe não é um dataframe
+    AttributeError
+        O parametro dataframe não é um dataframe
+    KeyError
+        Nao existe uma coluna NO_REGIAO
+    ValueError
+        Há registros fora do formato '%d%b%Y:%H:%M:%S' na coluna 'DT_ANO_LETIVO_INICIO'
+    
 
+    Returns
+    ----------
+        None
+        
+    >>> visualizacao_tambosi ('Erro')
+    O argumeto passado não é do tipo pd.DataFrame
+    
+    >>> c = pd.DataFrame({"Coluna":[1, 2, 3, 4]})
+    >>> visualizacao_tambosi(c)
+    No seu DataFrame, não existe uma coluna NO_REGIAO
+    """
 
+    try:
+        # 1. AGRUPAR POR REGIÃO
+        datas_estado = df.groupby("NO_REGIAO")
+        
+    except (TypeError, AttributeError):
+        print('O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
+        return
+    
+    except KeyError: 
+        print('No seu DataFrame, não existe uma coluna NO_REGIAO')
+        return
+    
+    
+    # 2. REALIZAR A ANALISE PARA CADA REGIAO
+    for region, data in datas_estado :   
 
+        try:
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
+        
+        except ValueError: # Provavelmente foi esquecida a limpeza da base!
+            data = data.dropna()
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
 
+        # 3. AGRUPAR POR SEMANA
+        data[f"Semana do ano - {region}"] = data_formatado.dt.strftime('%Y-%U')
+
+        # 4. CONTAR A FREQUENCIA DE CADA SEMANA
+        semanal = data[f"Semana do ano - {region}"].value_counts()
+
+        # 5. ORDENAR O SERIES PELO INDEX ASC
+        semanal_ord = semanal.sort_index()
+
+        # 6. PARA CADA REGIAO, PLOTAR UM HISTOGRAMA DE DATA POR FREQUENCIA
+        plt.figure(figsize=(10, 3))
+        semanal_ord.plot(kind='bar', color='yellow')
+        plt.xlabel('Semana do ano')
+        plt.ylabel('Ocorrências')
+        plt.title(f'Distribuição de Data de Inicio das Aulas - {region}')
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
 
 def visualizacao_vilas(dataframe):
     '''
@@ -176,8 +249,6 @@ def visualizacao_vilas(dataframe):
 
     except (TypeError, ValueError) as e:
         print(f'Erro: {e}')
-
-
 
 if __name__ == "__main__":
     import doctest
