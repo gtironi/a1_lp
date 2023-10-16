@@ -45,6 +45,5 @@ class TestCorrigeNomeEstados(unittest.TestCase):
         expected = pd.DataFrame({'NU_ANO_CENSO': [2021, 2021, 2021], 'NO_UF': ['Rondônia', 'Amapá', 'Maranhão']})
         self.assertTrue(result.equals(expected))
 
-
 if __name__ == "__main__":
     unittest.main()

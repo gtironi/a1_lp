@@ -106,10 +106,8 @@ def visualizacao_tambosi(df):
     >>> c = pd.DataFrame({"Coluna":[1, 2, 3, 4]})
     >>> visualizacao_tambosi(c)
     No seu DataFrame, não existe uma coluna NO_REGIAO
-    
     """
-    
-    
+
     try:
         # 1. AGRUPAR POR REGIÃO
         datas_estado = df.groupby("NO_REGIAO")
@@ -152,7 +150,6 @@ def visualizacao_tambosi(df):
         plt.tight_layout()
         plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
         
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
