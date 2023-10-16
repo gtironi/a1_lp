@@ -20,3 +20,6 @@ dataframe = dc.replace_88888_values(dataframe_no_NaN) #altera os valores 88888 p
 vis.visualizacao_gustavo(dataframe) #cria e salva a visualização do gustavo em um arquivo
 
 vis.visualizacao_marciano(dataframe) #cria e salva a visualização do marciano em um arquivo
+
+vis.visualizacao_tambosi(dataframe) # Cria e salva a visualização do Tambosi em 2 arquivos chamados f"(Tambosi) Distribuicao Inicio Aulas - {region}"
+
