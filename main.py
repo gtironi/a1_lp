@@ -23,3 +23,5 @@ vis.visualizacao_marciano(dataframe) #cria e salva a visualização do marciano 
 
 vis.visualizacao_tambosi(dataframe) # Cria e salva a visualização do Tambosi em 2 arquivos chamados f"(Tambosi) Distribuicao Inicio Aulas - {region}"
 
+vis.visualizacao_vilas(dataframe_without_tratament) # Cria e salva a visualização do Vilas em um arquivo png
+
