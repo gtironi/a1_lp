@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import data_analisy
-import data_cleaner
 import os
 
 
@@ -154,8 +152,7 @@ def visualizacao_tambosi(df):
         plt.title(f'Distribuição de Data de Inicio das Aulas - {region}')
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig(os.path.join("Imagens", f"(Tambosi) Distribuicao Inicio Aulas - {region}"))
-        plt.close()
+        plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
 
 def visualizacao_vilas(dataframe):
     '''
