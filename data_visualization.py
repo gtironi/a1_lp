@@ -1,5 +1,8 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import data_analisy
+import data_cleaner
+
 
 def visualizacao_gustavo(dataframe):
     '''Plota o gráfico que mostra a quantidade média de TVs por escola, por estado
@@ -78,7 +81,7 @@ def visualizacao_marciano(dataframe):
 def visualizacao_tambosi(df):
     """
     Plota um histograma com a distribuição de datas de inicio de aulas por estado.
-
+    
     Parameters
     ----------
     dataframe: dataframe
@@ -106,10 +109,8 @@ def visualizacao_tambosi(df):
     >>> c = pd.DataFrame({"Coluna":[1, 2, 3, 4]})
     >>> visualizacao_tambosi(c)
     No seu DataFrame, não existe uma coluna NO_REGIAO
-    
     """
-    
-    
+
     try:
         # 1. AGRUPAR POR REGIÃO
         datas_estado = df.groupby("NO_REGIAO")
@@ -151,7 +152,103 @@ def visualizacao_tambosi(df):
         plt.xticks(rotation=45)
         plt.tight_layout()
         plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
+
+def visualizacao_vilas(dataframe):
+    '''
+    Plota uma peça gráfica que mostra a distribuição de matrículas nos respectivos níveis de ensino para cada dependência administrativa.
+
+    Parameters
+    ----------
+    dataframe : pd.DataFrame
+        Dataframe contendo as informações necessárias para criar a visualização. Deve conter as colunas:
+        "NO_REGIAO", "NO_UF", "TP_DEPENDENCIA", "QT_MAT_INF_INT", "QT_MAT_INF_CRE_INT", "QT_MAT_INF_PRE_INT",
+        "QT_MAT_FUND_INT", "QT_MAT_FUND_AI_INT", "QT_MAT_FUND_AF_INT", "QT_MAT_MED_INT".
+
+    Raises
+    ------
+    TypeError
+        Se o argumento passado não for do tipo pd.DataFrame.
+    ValueError
+        Se o dataframe não contiver todas as colunas necessárias.
+
+    Returns
+    -------
+    None
+
+    Examples
+    --------
+    >>> visualizacao_vilas('Erro')
+    O argumento passado não é do tipo pd.Dataframe
+    '''
+
+    try:
+        if not isinstance(dataframe, pd.DataFrame):
+            raise TypeError('O argumento passado não é do tipo pd.DataFrame')
         
+        required_columns = ["NO_REGIAO", "NO_UF", "TP_DEPENDENCIA", 
+                            "QT_MAT_INF_INT", "QT_MAT_INF_CRE_INT", "QT_MAT_INF_PRE_INT",
+                            "QT_MAT_FUND_INT", "QT_MAT_FUND_AI_INT", "QT_MAT_FUND_AF_INT", "QT_MAT_MED_INT"]
+
+        for column in required_columns:
+            if column not in dataframe.columns:
+                raise ValueError(f'Coluna "{column}" não encontrada no dataframe.')
+
+        indicadores_iniciais = dataframe.copy()
+        indicadores_iniciais["QT_MAT_INF"] = indicadores_iniciais["QT_MAT_INF_INT"] + indicadores_iniciais["QT_MAT_INF_CRE_INT"] + indicadores_iniciais["QT_MAT_INF_PRE_INT"]
+        indicadores_iniciais["QT_MAT_FUND"] = indicadores_iniciais["QT_MAT_FUND_INT"] + indicadores_iniciais["QT_MAT_FUND_AI_INT"] + indicadores_iniciais["QT_MAT_FUND_AF_INT"]
+        indicadores_iniciais["QT_MAT_MED"] = indicadores_iniciais["QT_MAT_MED_INT"]
+
+        # Criando o novo dataframe com as colunas desejadas
+        novo_dataframe = indicadores_iniciais[["NO_REGIAO", "NO_UF", "TP_DEPENDENCIA", "QT_MAT_INF", "QT_MAT_FUND", "QT_MAT_MED"]]
+        treated_dataframe = novo_dataframe.loc[(novo_dataframe[["QT_MAT_INF", "QT_MAT_FUND", "QT_MAT_MED"]] != 0).any(axis=1)]
+
+        # Agrupando os dados por TP_DEPENDENCIA e somando as métricas
+        grupo_dependencia = treated_dataframe.groupby('TP_DEPENDENCIA').agg({
+            'QT_MAT_INF': 'sum',
+            'QT_MAT_FUND': 'sum',
+            'QT_MAT_MED': 'sum'
+        })
+
+        # Criando uma figura com 3 subplots
+        fig, ax = plt.subplots(nrows=1, ncols=3, figsize=(18, 6))
+
+        # Gráfico para QT_MAT_INF por TP_DEPENDENCIA
+        bars1 = ax[0].bar(grupo_dependencia.index, grupo_dependencia['QT_MAT_INF'], color='skyblue')
+        ax[0].set_xlabel('TP_DEPENDENCIA')
+        ax[0].set_ylabel('Soma de QT_MAT_INF')
+        ax[0].set_title('Soma de QT_MAT_INF por TP_DEPENDENCIA')
+        for bar in bars1:
+            yval = bar.get_height()
+            ax[0].text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom')
+
+        # Gráfico para QT_MAT_FUND por TP_DEPENDENCIA
+        bars2 = ax[1].bar(grupo_dependencia.index, grupo_dependencia['QT_MAT_FUND'], color='lightgreen')
+        ax[1].set_xlabel('TP_DEPENDENCIA')
+        ax[1].set_ylabel('Soma de QT_MAT_FUND')
+        ax[1].set_title('Soma de QT_MAT_FUND por TP_DEPENDENCIA')
+        for bar in bars2:
+            yval = bar.get_height()
+            ax[1].text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom')
+
+        # Gráfico para QT_MAT_MED por TP_DEPENDENCIA
+        bars3 = ax[2].bar(grupo_dependencia.index, grupo_dependencia['QT_MAT_MED'], color='lightcoral')
+        ax[2].set_xlabel('TP_DEPENDENCIA')
+        ax[2].set_ylabel('Soma de QT_MAT_MED')
+        ax[2].set_title('Soma de QT_MAT_MED por TP_DEPENDENCIA')
+        for bar in bars3:
+            yval = bar.get_height()
+            ax[2].text(bar.get_x() + bar.get_width()/2, yval, int(yval), ha='center', va='bottom')
+
+        # Definindo o eixo x para mostrar apenas 1, 2, 3, 4
+        for a in ax:
+            a.set_xticks([1, 2, 3, 4])
+
+        # Ajustando o layout para evitar sobreposição
+        plt.tight_layout()
+        plt.savefig("visualizacao_vilas.png", bbox_inches='tight')
+
+    except (TypeError, ValueError) as e:
+        print(f'Erro: {e}')
 
 if __name__ == "__main__":
     import doctest
