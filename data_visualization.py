@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import data_analisy
-import data_cleaner
 
 
 def visualizacao_gustavo(dataframe):
@@ -128,11 +126,12 @@ def visualizacao_tambosi(df):
     for region, data in datas_estado :   
 
         try:
-            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"].copy(), format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
         
         except ValueError: # Provavelmente foi esquecida a limpeza da base!
             data = data.dropna()
-            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
+            data = data.drop(data[data["DT_ANO_LETIVO_INICIO"] == '0'].index)
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"].copy(), format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
 
         # 3. AGRUPAR POR SEMANA
         data[f"Semana do ano - {region}"] = data_formatado.dt.strftime('%Y-%U')
@@ -178,7 +177,7 @@ def visualizacao_vilas(dataframe):
     Examples
     --------
     >>> visualizacao_vilas('Erro')
-    O argumento passado não é do tipo pd.Dataframe
+    O argumento passado não é do tipo pd.DataFrame
     '''
 
     try:
@@ -248,7 +247,7 @@ def visualizacao_vilas(dataframe):
         plt.savefig("visualizacao_vilas.png", bbox_inches='tight')
 
     except (TypeError, ValueError) as e:
-        print(f'Erro: {e}')
+        print(f'{e}')
 
 if __name__ == "__main__":
     import doctest
