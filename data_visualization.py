@@ -79,17 +79,49 @@ def visualizacao_tambosi(df):
     """
     Plota um histograma com a distribuição de datas de inicio de aulas por estado.
 
-    Parameters:
-        df (pd.DataFrame): DataFrame contendo a data.
+    Parameters
+    ----------
+    dataframe: dataframe
+        O dataframe a ser analisado
+    
+    Raises
+    ------
+    TypeError
+        O parametro dataframe não é um dataframe
+    AttributeError
+        O parametro dataframe não é um dataframe
+    KeyError
+        Nao existe uma coluna NO_REGIAO
+    ValueError
+        Há registros fora do formato '%d%b%Y:%H:%M:%S' na coluna 'DT_ANO_LETIVO_INICIO'
+    
 
-    Returns:
+    Returns
+    ----------
         None
+        
+    >>> visualizacao_tambosi ('Erro')
+    O argumeto passado não é do tipo pd.DataFrame
+    
+    >>> c = pd.DataFrame({"Coluna":[1, 2, 3, 4]})
+    >>> visualizacao_tambosi(c)
+    No seu DataFrame, não existe uma coluna NO_REGIAO
+    
     """
+    
+    
     try:
         # 1. AGRUPAR POR REGIÃO
         datas_estado = df.groupby("NO_REGIAO")
+        
     except (TypeError, AttributeError):
         print('O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
+        return
+    
+    except KeyError: 
+        print('No seu DataFrame, não existe uma coluna NO_REGIAO')
+        return
+    
     
     # 2. REALIZAR A ANALISE PARA CADA REGIAO
     for region, data in datas_estado :   
@@ -98,8 +130,8 @@ def visualizacao_tambosi(df):
             data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
         
         except ValueError: # Provavelmente foi esquecida a limpeza da base!
-            print("Você esqueceu a limpeza da base!")
-            df = df.dropna()
+            data = data.dropna()
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
 
         # 3. AGRUPAR POR SEMANA
         data[f"Semana do ano - {region}"] = data_formatado.dt.strftime('%Y-%U')
@@ -120,8 +152,6 @@ def visualizacao_tambosi(df):
         plt.tight_layout()
         plt.savefig(f"(Tambosi) Distribuicao Inicio Aulas - {region}")
         
-        
-            
 
 if __name__ == "__main__":
     import doctest
