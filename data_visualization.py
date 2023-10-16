@@ -249,7 +249,7 @@ def visualizacao_vilas(dataframe):
 
         # Ajustando o layout para evitar sobreposição
         plt.tight_layout()
-        plt.savefig(os.path.join("imagens", "visualizacao_vilas_png"), bbox_inches='tight')
+        plt.savefig(os.path.join("imagens", "visualizacao_vilas.png"), bbox_inches='tight')
         plt.close()
 
     except (TypeError, ValueError) as e:
