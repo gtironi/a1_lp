@@ -133,7 +133,8 @@ def visualizacao_tambosi(df):
         
         except ValueError: # Provavelmente foi esquecida a limpeza da base!
             data = data.dropna()
-            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
+            data = data.drop(data[data["DT_ANO_LETIVO_INICIO"] == '0'].index)
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"].copy(), format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
 
         # 3. AGRUPAR POR SEMANA
         data[f"Semana do ano - {region}"] = data_formatado.dt.strftime('%Y-%U')
