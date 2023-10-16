@@ -1,7 +1,5 @@
 import matplotlib.pyplot as plt
 import pandas as pd
-import data_analisy
-import data_cleaner
 import os
 
 
@@ -37,7 +35,7 @@ def visualizacao_gustavo(dataframe):
         plt.title('Quantidade média de TVs por escola, por estado') #coloca titulo no grafico
         plt.xlabel('Estados') #define a label no eixo x
         plt.ylabel('Quantidade média de TVs') #define a label no eixo y
-        plt.savefig(os.path.join("Imagens", "visualizacao_gustavo.png"))
+        plt.savefig(os.path.join("imagens", "visualizacao_gustavo.png"))
         plt.close()
     except (TypeError,AttributeError):
         print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
@@ -75,7 +73,8 @@ def visualizacao_marciano(dataframe):
         plt.ylabel('Número de Escolas') # define label do eixo y
         plt.title('Quantidade de escolas sem acesso à Internet por Estado') #define título
         plt.xticks(rotation=45) # roda o nome dos estados em 45 graus
-        plt.savefig(os.path.join("Imagens", "visualizacao_marciano.png"))
+        plt.tight_layout()
+        plt.savefig(os.path.join("imagens", "visualizacao_marciano.png"))
         plt.close() # salva o plot em um arquivo
     except (TypeError, AttributeError):
         print(f'O argumeto passado não é do tipo pd.DataFrame') #avisa sobre o erro no argumento da função, não há como tratar de outra forma
@@ -135,7 +134,8 @@ def visualizacao_tambosi(df):
         
         except ValueError: # Provavelmente foi esquecida a limpeza da base!
             data = data.dropna()
-            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"], format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
+            data = data.drop(data[data["DT_ANO_LETIVO_INICIO"] == '0'].index)
+            data_formatado = pd.to_datetime(data["DT_ANO_LETIVO_INICIO"].copy(), format='%d%b%Y:%H:%M:%S') # Transformar data em datetime
 
         # 3. AGRUPAR POR SEMANA
         data[f"Semana do ano - {region}"] = data_formatado.dt.strftime('%Y-%U')
@@ -154,7 +154,7 @@ def visualizacao_tambosi(df):
         plt.title(f'Distribuição de Data de Inicio das Aulas - {region}')
         plt.xticks(rotation=45)
         plt.tight_layout()
-        plt.savefig(os.path.join("Imagens", f"(Tambosi) Distribuicao Inicio Aulas - {region}"))
+        plt.savefig(os.path.join("imagens", f"visualizacao_tambosi_{region.lower()}.png"), bbox_inches='tight')
         plt.close()
 
 def visualizacao_vilas(dataframe):
@@ -182,7 +182,7 @@ def visualizacao_vilas(dataframe):
     Examples
     --------
     >>> visualizacao_vilas('Erro')
-    O argumento passado não é do tipo pd.Dataframe
+    Erro: O argumento passado não é do tipo pd.DataFrame
     '''
 
     try:
@@ -249,7 +249,7 @@ def visualizacao_vilas(dataframe):
 
         # Ajustando o layout para evitar sobreposição
         plt.tight_layout()
-        plt.savefig(os.path.join("Imagens", "visualizacao_vilas_png"), bbox_inches='tight')
+        plt.savefig(os.path.join("imagens", "visualizacao_vilas.png"), bbox_inches='tight')
         plt.close()
 
     except (TypeError, ValueError) as e:
